@@ -32,7 +32,7 @@ This project have been developed using `Serverless Architecture` and to help us 
 npm install -g serverless
 ```
 
-> This project makes use of some DynamoDB tables and if you want to run this project locally its necessary to install dynamodb locally.
+> This project makes use of some DynamoDB tables and if you want to run this project locally its necessary to install dynamodb locally (In case you didn't run `npm run setup` command).
 
 ```bash
 sls dynamodb install
