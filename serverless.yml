@@ -1,0 +1,53 @@
+service: serverless-graphql-rest-api
+
+plugins:
+  - serverless-dynamodb-local
+  - serverless-offline
+
+custom:
+  stage: ${env:SLS_STAGE, opt:stage, self:provider.stage}
+  dynamodb:
+    start:
+      port: 8000
+      inMemory: true
+      migrate: true
+      seed: true
+    seed:
+      users:
+        sources:
+          - table: "${self:custom.stage}.users"
+            sources: [dynamodb/seed-data/users.json]
+          - table: "${self:custom.stage}.companies"
+            sources: [dynamodb/seed-data/companies.json]
+          - table: "${self:custom.stage}.positions"
+            sources: [dynamodb/seed-data/positions.json]
+
+provider:
+  name: aws
+  runtime: nodejs8.10
+  region: us-east-1
+  role: defaultRole
+  stage: dev
+  environment:
+    STAGE: ${self:custom.stage}
+
+functions:
+  graphql:
+    handler: src/handler.graphqlHandler
+    events:
+    - http:
+        path: graphql
+        method: post
+        cors: true
+  
+  graphiql:
+    handler: src/handler.graphiqlHandler
+    events:
+    - http:
+        path: graphiql
+        method: get
+        cors: true
+
+
+resources:
+  Resources: ${file(./serverless-dynamic.js):resources}
