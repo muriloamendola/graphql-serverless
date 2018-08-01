@@ -21,8 +21,8 @@ const resolvers = {
     user: (root, args) => UsersRepository.getById(args.id)
   },
   User: {
-    company: (user) => CompaniesRepository.getById(user.companyId),
-    position: (user) => PositionsRepository.getById(user.positionId),
+    company: (user, args, { CompaniesLoader }) => CompaniesLoader.load(user.companyId),
+    position: (user, args, { PositionsLoader }) => PositionsLoader.load(user.positionId),
     friends: (user) => UsersRepository.getByIds(user.friends)
   }
 };
