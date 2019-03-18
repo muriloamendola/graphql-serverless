@@ -26,11 +26,11 @@
     "graphql": "^0.13.2",
     "graphql-tools": "^3.0.2",
     "lodash": "^4.17.10",
-    "serverless-dynamodb-local": "^0.2.30",
     "yamljs": "^0.3.0"
   },
   "devDependencies": {
     "aws-sdk": "^2.259.1",
-    "serverless-offline": "^3.23.0"
+    "serverless-offline": "^3.23.0",
+    "serverless-dynamodb-local": "0.2.30"
   }
 }
