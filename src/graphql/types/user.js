@@ -1,4 +1,3 @@
-const CompaniesRepository = require('../../domain/repositories/companies-repository');
 const PositionsRepository = require('../../domain/repositories/positions-repository');
 const UsersRepository = require('../../domain/repositories/users-repository');
 
@@ -22,7 +21,7 @@ const resolvers = {
   },
   User: {
     company: (user, args, { CompaniesLoader }) => CompaniesLoader.load(user.companyId),
-    position: (user, args, { PositionsLoader }) => PositionsLoader.load(user.positionId),
+    position: (user, args) => PositionsRepository.getById(user.positionId),
     friends: (user) => UsersRepository.getByIds(user.friends)
   }
 };

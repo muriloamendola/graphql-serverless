@@ -1,7 +1,6 @@
 const { graphqlLambda, graphiqlLambda } = require('apollo-server-lambda');
 const myGraphQLSchema = require('./graphql/schema');
 const CompaniesLoader = require('./graphql/loaders/companies-loader');
-const PositionsLoader = require('./graphql/loaders/positions-loader');
 
 const graphqlHandler = (event, context, callback) => {
   // Avoid CORS problem when using Angular Apollo Client for example
@@ -15,8 +14,7 @@ const graphqlHandler = (event, context, callback) => {
     context: {
       event,
       context,
-      CompaniesLoader,
-      PositionsLoader
+      CompaniesLoader
     }
   }));
 

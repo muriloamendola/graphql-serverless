@@ -40,12 +40,10 @@ sls dynamodb install
 
 ## Authors
 
-* **Murilo Cezar Amêndola de Oliveira** - [muriloamendola@gmail.com](muriloamendola@gmail.com)
+* **[Murilo Amêndola](https://twitter.com/muriloamendola)** - <muriloamendola@gmail.com>
 
 See also the list of [contributors](https://github.com/muriloamendola/graphql-serverless/contributors) who participated in this project.
 
 ## License
 
 MIT License © 2018
-
-
