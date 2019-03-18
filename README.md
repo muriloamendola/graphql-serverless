@@ -38,6 +38,11 @@ npm install -g serverless
 sls dynamodb install
 ```
 
+#### Dataloader
+
+We have implemented a sample of [dataloader](https://www.npmjs.com/package/dataloader) use ate user's company field.
+You can see the loader code at [./src/graphql/loaders/companies-loader.js](./src/graphql/companies-loader.js).
+
 ## Authors
 
 * **[Murilo Amêndola](https://twitter.com/muriloamendola)** - <muriloamendola@gmail.com>
