@@ -21,7 +21,7 @@ const graphqlHandler = (event, context, callback) => {
   return handler(event, context, callbackFilter);
 };
  
-const graphiqlHandler = graphiqlLambda({ endpointURL: 'http://localhost:3000/graphql' });
+const graphiqlHandler = graphiqlLambda({ endpointURL: 'http://localhost:3000/dev/graphql' });
 
 module.exports = {
   graphqlHandler,
