@@ -1,4 +1,3 @@
-const _ = require('lodash');
 const RepositoryBase = require('./repository-base');
 
 const TableName = `${process.env.STAGE}.positions`;
@@ -13,7 +12,7 @@ class PositionsRepository extends RepositoryBase {
   }
 
   getByIds (ids) {
-    return this.batchGet(_.map(ids, id => ({ id })));
+    return this.batchGet(ids.map(id => ({ id })));
   }
 }
 

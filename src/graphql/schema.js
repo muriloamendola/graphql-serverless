@@ -1,4 +1,3 @@
-const _ = require('lodash');
 const { makeExecutableSchema } = require('graphql-tools');
 const { typeDef: User, resolvers: userResolvers } = require('./types/user');
 const { typeDef: Company, resolvers: companyResolvers } = require('./types/company');
@@ -12,5 +11,5 @@ const Query = `
 
 module.exports = makeExecutableSchema({
   typeDefs: [ Query, User, Company, Position ],
-  resolvers: _.merge({}, userResolvers, companyResolvers, positionResolvers)
+  resolvers: Object.assign({}, userResolvers, companyResolvers, positionResolvers)
 });
