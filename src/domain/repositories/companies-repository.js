@@ -1,19 +1,21 @@
-const _ = require('lodash');
-const RepositoryBase = require('./repository-base');
-
-const TableName = `${process.env.STAGE}.companies`;
-
-class CompaniesRepository extends RepositoryBase {
-  constructor () {
-    super(TableName);
+const companies = [
+  {
+    id: "1",
+    name: "Juntos Somos Mais"
+  },
+  {
+    id: "2",
+    name: "Votorantim"
+  },
+  {
+    id: "3",
+    name: "Gerdau"
   }
+];
 
+class CompaniesRepository {
   getById (id) {
-    return this.getByKey({ id });
-  }
-
-  getByIds (ids) {
-    return this.batchGet(_.map(ids, id => ({ id })));
+    return companies.find(c => c.id == id);
   }
 }
 
