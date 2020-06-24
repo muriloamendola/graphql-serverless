@@ -1,29 +1,27 @@
-const { graphqlLambda, graphiqlLambda } = require('apollo-server-lambda');
+const { ApolloServer } = require('apollo-server-lambda');
 const myGraphQLSchema = require('./graphql/schema');
-const CompaniesLoader = require('./graphql/loaders/companies-loader');
 
-const graphqlHandler = (event, context, callback) => {
-  // Avoid CORS problem when using Angular Apollo Client for example
-  const callbackFilter = (error, output) => {
-    output.headers['Access-Control-Allow-Origin'] = '*';
-    callback(error, output);
-  };
 
-  const handler = graphqlLambda((event, context) => ({
-    schema: myGraphQLSchema,
-    context: {
-      event,
-      context,
-      CompaniesLoader
-    }
-  }));
+const server = new ApolloServer({
+  ...myGraphQLSchema,
+  context: ({ event, context }) => ({
+    headers: event.headers,
+    functionName: context.functionName,
+    event,
+    context,
+  }),
+  playground: {
+    endpoint: "/dev/graphql"
+  }
+});
 
-  return handler(event, context, callbackFilter);
-};
- 
-const graphiqlHandler = graphiqlLambda({ endpointURL: 'http://localhost:3000/dev/graphql' });
+const graphqlHandler = server.createHandler({
+  cors: {
+    origin: '*',
+    credentials: true,
+  },
+});
 
 module.exports = {
-  graphqlHandler,
-  graphiqlHandler
+  graphqlHandler
 };
